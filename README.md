@@ -95,9 +95,6 @@ npm run dev
 
 ## 🔐 API Key Setup (Mandatory Security)
 
-### ⚠️ CRITICAL: Never Expose API Keys
-
-**NEVER commit `.env.local` to GitHub or expose your API key in public.**
 
 ### Step-by-Step Setup
 
