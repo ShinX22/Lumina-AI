@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -43,10 +45,20 @@ jobs:
         working-directory: lumina-ai-learning
         run: npm run build
 
+      - name: Verify build output exists (debug)
+        run: |
+          echo "Contents of lumina-ai-learning/ after build:"
+          ls -la lumina-ai-learning || true
+          echo "Contents of lumina-ai-learning/dist:"
+          ls -la lumina-ai-learning/dist || true
+          echo "Disk usage for artifact:"
+          du -sh lumina-ai-learning/dist || true
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
+        id: upload-pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'lumina-ai-learning/dist'
